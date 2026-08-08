@@ -1,0 +1,299 @@
+/* ==========================================================================
+   content.css — the document sections that scroll normally:
+   implant dentistry, about Dr. Ketkar, and visiting the clinic.
+   ========================================================================== */
+
+/* These grids are shorter than a screen on a laptop, so centre them inside the
+   full-height section rather than leaving the slack at the bottom. */
+.sect--implants,
+.sect--about,
+.sect--visit {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .sect--implants,
+  .sect--about,
+  .sect--visit { min-height: 0; padding-top: 24px; padding-bottom: 24px; }
+}
+
+/* ── Shared card primitives ─────────────────────────────────────────────── */
+
+.card { border-radius: var(--r); padding: 28px; }
+.card--paper { background: var(--paper); }
+.card--mist  { background: var(--mist); }
+.card--dark  { background: var(--ink); color: var(--white); }
+
+.card__note    { font-size: 14px; font-weight: 600; }
+.card__heading { font-size: 30px; font-weight: 700; line-height: 32px; }
+
+.display {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 700;
+  line-height: .95;
+}
+.display--tight {
+  font-size: clamp(2.6rem, 5.4vw, 5rem);
+  letter-spacing: -.02em;
+}
+
+.eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.prose {
+  max-width: 56ch;
+  font-size: var(--fs-prose);
+  font-weight: 500;
+  line-height: 1.5;
+  text-wrap: pretty;
+  color: var(--ink-soft);
+}
+
+.arrow {
+  align-self: flex-end;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 1px solid currentColor;
+  border-radius: var(--r-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s var(--ease);
+}
+.arrow svg { transform: rotate(-45deg); }
+
+/* ── 3. Implant dentistry ───────────────────────────────────────────────── */
+
+.implants-grid,
+.about-grid { display: grid; align-items: start; gap: var(--gap); }
+.implants-grid { grid-template-columns: 1fr 1fr; }
+
+.implants-col { display: flex; flex-direction: column; gap: var(--gap); }
+
+.implants-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.implants-shots { display: flex; gap: var(--gap); height: clamp(160px, 24vh, 280px); }
+.implants-shots figure {
+  flex: 1;
+  min-width: 0;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--sand-warm);
+}
+.implants-shots img { width: 100%; height: 100%; object-fit: cover; }
+
+.implants-consult {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.implants-consult .card__note { margin-bottom: 12px; }
+
+.implants-photo {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  align-self: stretch;
+  min-height: 360px;
+  background: var(--sand-warm);
+}
+.implants-photo > img { width: 100%; height: 100%; object-fit: cover; }
+
+.photo-cards {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  gap: var(--gap);
+}
+
+.photo-card {
+  flex: 1;
+  min-width: 0;
+  height: clamp(150px, 23vh, 208px);
+  padding: 20px;
+  border-radius: var(--r);
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+.photo-card h4 { font-size: 24px; font-weight: 700; line-height: 28px; }
+.photo-card:hover .arrow { transform: translate(3px, -3px); }
+
+.photo-card--glass {
+  background: rgba(255, 255, 255, .2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: var(--white);
+}
+
+/* ── 4. About ───────────────────────────────────────────────────────────── */
+
+.about-grid { grid-template-columns: 1.15fr .85fr; }
+.about-col { display: flex; flex-direction: column; gap: var(--gap); }
+
+.about-bio {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+.about-bio .eyebrow { margin-bottom: 18px; }
+.about-bio .display { margin-bottom: 22px; }
+
+.about-quote {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about-quote p {
+  max-width: 32ch;
+  font-size: clamp(1.25rem, 2.1vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+}
+.about-quote cite { margin-top: 20px; font-size: 14px; font-weight: 600; font-style: normal; }
+
+.about-portrait {
+  border-radius: var(--r);
+  overflow: hidden;
+  height: clamp(220px, 32vh, 340px);
+  background: var(--sand);
+}
+.about-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.fact {
+  border-radius: var(--r);
+  background: var(--paper);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+.fact__value { font-size: 30px; font-weight: 700; line-height: 1; }
+.fact__label { font-size: 14px; font-weight: 600; line-height: 1.35; color: var(--ink-soft); }
+.fact--dark { background: var(--ink); }
+.fact--dark .fact__value { color: var(--white); }
+.fact--dark .fact__label { color: var(--mist); }
+
+/* ── 5. Visit ───────────────────────────────────────────────────────────── */
+
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  grid-template-areas: "intro side" "map map";
+  align-items: start;
+  gap: var(--gap);
+}
+.visit-intro { grid-area: intro; }
+.visit-col   { grid-area: side; display: flex; flex-direction: column; gap: var(--gap); }
+.visit-map   { grid-area: map; }
+
+.visit-intro {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: clamp(320px, 46vh, 460px);
+}
+.visit-intro .eyebrow { margin-bottom: 18px; }
+
+.visit-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
+.visit-details dt { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-mute); }
+.visit-details dd { margin-top: 8px; font-size: 15px; font-weight: 600; line-height: 1.45; }
+.visit-details a { border-bottom: 1px solid rgba(0, 0, 0, .25); }
+
+.visit-hours { padding: 28px; }
+.visit-hours .card__heading { margin-bottom: 20px; }
+.hours { margin-bottom: 20px; }
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  font-size: 15px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+.hours li:last-child { border-bottom: none; }
+
+.visit-actions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.action {
+  padding: 24px 20px;
+  min-height: 132px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 16px;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .3s var(--ease);
+}
+.action:hover { transform: translateY(-3px); color: inherit; }
+.action:hover .arrow { transform: translate(3px, -3px); }
+.action__label { font-size: 18px; font-weight: 700; line-height: 1.2; }
+.arrow--light { border-color: rgba(255, 255, 255, .6); }
+
+.visit-map {
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--sand-warm);
+  height: clamp(260px, 38vh, 420px);
+}
+.visit-map iframe { width: 100%; height: 100%; border: 0; display: block; filter: grayscale(1) contrast(1.05); }
+.visit-map:hover iframe { filter: none; }
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .implants-grid,
+  .about-grid { grid-template-columns: 1fr; }
+  .visit-grid { grid-template-columns: 1fr; grid-template-areas: "intro" "side" "map"; }
+  .implants-photo { min-height: clamp(420px, 60vh, 620px); }
+  .about-portrait { height: clamp(280px, 42vh, 420px); }
+}
+
+@media (max-width: 700px) {
+  .card { padding: 22px; }
+  .about-bio, .about-quote, .visit-intro { padding: 24px; }
+  .card__heading { font-size: 26px; line-height: 30px; }
+
+  .implants-consult { align-items: flex-start; flex-direction: column; }
+  .implants-consult .btn--light { align-self: stretch; padding: 18px 28px; font-size: 18px; }
+
+  .photo-cards { flex-direction: column; bottom: 12px; left: 12px; right: 12px; }
+  .photo-card { height: auto; flex-direction: row; align-items: center; padding: 16px; }
+  .photo-card h4 { font-size: 19px; line-height: 23px; }
+  .photo-card .arrow { align-self: center; width: 40px; height: 40px; }
+
+  .facts { grid-template-columns: 1fr; }
+  .fact { min-height: 104px; }
+  .visit-actions { grid-template-columns: 1fr; }
+}

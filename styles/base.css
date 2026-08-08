@@ -1,0 +1,279 @@
+/* ==========================================================================
+   base.css — design tokens, reset, shared primitives, header, footer, dialog
+   Tokens mirror the Claude Design handoff: 16px radii, 8px gutters, 20px rails.
+   ========================================================================== */
+
+/* Open Sauce One by Marcelo Magalhães, SIL OFL 1.1 — assets/fonts/OFL.txt.
+   Subset to latin; only the five weights the site actually uses. */
+@font-face { font-family: 'Open Sauce One'; src: url('../assets/fonts/open-sauce-one-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Open Sauce One'; src: url('../assets/fonts/open-sauce-one-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Open Sauce One'; src: url('../assets/fonts/open-sauce-one-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Open Sauce One'; src: url('../assets/fonts/open-sauce-one-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Open Sauce One'; src: url('../assets/fonts/open-sauce-one-800.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+
+:root {
+  --ink:        #000;
+  --ink-soft:   #1a1a1a;
+  --ink-mute:   #6b6b6b;
+  --paper:      #fafaf9;   /* light card */
+  --mist:       #e4e4e7;   /* grey card */
+  --sand:       #e3ded6;   /* photo backdrop */
+  --sand-warm:  #e7e3dc;
+  --white:      #fff;
+
+  --gap:  8px;
+  --rail: 20px;
+  --r:    16px;
+  --r-pill: 9999px;
+
+  --header-h: 96px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --fs-body: 14px;
+  --fs-prose: 17px;
+}
+
+@media (max-width: 900px) {
+  :root { --rail: 12px; --header-h: 84px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 8px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: 'Open Sauce One', system-ui, -apple-system, sans-serif;
+  font-size: var(--fs-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; }
+
+a { color: inherit; text-decoration: none; transition: color .2s; }
+a:hover { color: var(--ink-mute); }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: fixed; top: 8px; left: 8px; z-index: 200;
+  padding: 10px 16px; background: var(--ink); color: var(--white);
+  border-radius: var(--r-pill); font-weight: 600;
+  transform: translateY(-200%); transition: transform .2s;
+}
+.skip-link:focus-visible { transform: none; color: var(--white); }
+
+/* ── Splash ─────────────────────────────────────────────────────────────── */
+
+.splash {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: flex-end; justify-content: flex-start;
+  background: var(--white);
+  transition: opacity .7s ease;
+}
+.splash[hidden] { display: none; }  /* author rule must beat .splash{display:flex} */
+.splash[data-exiting] { opacity: 0; pointer-events: none; }
+.splash__count {
+  padding: 40px;
+  font-size: clamp(4rem, 11vw, 9rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid transparent; border-radius: var(--r-pill);
+  font-family: inherit; font-weight: 600; white-space: nowrap; cursor: pointer;
+  transition: background-color .2s, color .2s, transform .2s, border-color .2s;
+}
+.btn--dark {
+  padding: 12px 24px; font-size: 14px;
+  background: var(--ink); border-color: var(--ink); color: var(--white);
+}
+.btn--dark:hover { background: var(--white); color: var(--ink); }
+
+.btn--light {
+  padding: 20px 32px; font-size: 20px; font-weight: 700;
+  background: var(--white); color: var(--ink);
+}
+.btn--light:hover { transform: scale(1.05); color: var(--ink); }
+
+.btn--outline {
+  padding: 12px 24px; font-size: 14px;
+  background: transparent; border-color: var(--ink); color: var(--ink);
+}
+.btn--outline:hover { background: var(--ink); color: var(--white); }
+
+.btn--ghost {
+  background: rgba(255, 255, 255, .55);
+  border-color: rgba(0, 0, 0, .22);
+  color: var(--ink);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.btn--ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--white); }
+
+.btn--lg { padding: 17px 30px; font-size: 16px; }
+
+/* ── Entrance ───────────────────────────────────────────────────────────── */
+/* Guarded on html.js so a failed script can never leave the hero blank. */
+
+.js .rise { opacity: 0; transform: translateY(20px); }
+.js [data-ready] .rise { animation: rise .75s var(--ease) forwards; animation-delay: calc(var(--i, 0) * 75ms); }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px var(--rail) 12px 24px;
+  background: rgba(255, 255, 255, .82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform .35s var(--ease), box-shadow .3s;
+}
+.site-header[data-hidden] { transform: translateY(-102%); }
+.site-header[data-scrolled] { box-shadow: 0 1px 0 rgba(0, 0, 0, .07); }
+
+.logo { display: flex; flex-direction: column; }
+.logo:hover { color: inherit; }
+.logo__line {
+  font-size: 24px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: -.02em; line-height: 1;
+}
+.logo__line + .logo__line { margin-top: -2px; }
+.logo__sub { font-size: 9px; font-weight: 500; line-height: 1; margin-top: 8px; letter-spacing: .04em; }
+
+.site-nav { display: flex; align-items: center; gap: 24px; }
+/* padding keeps text links at a 24px minimum tap target */
+.site-nav > a { display: inline-flex; align-items: center; min-height: 26px; padding: 5px 2px; font-size: 14px; font-weight: 600; }
+
+.nav-emergency { display: inline-flex; align-items: center; gap: 8px; }
+.pulse {
+  width: 7px; height: 7px; border-radius: 50%; background: #d33;
+  box-shadow: 0 0 0 0 rgba(221, 51, 51, .55);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  70%  { box-shadow: 0 0 0 8px rgba(221, 51, 51, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(221, 51, 51, 0); }
+}
+
+.nav-toggle {
+  display: none;
+  width: 44px; height: 44px; padding: 0;
+  background: none; border: 1px solid var(--ink); border-radius: var(--r-pill);
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block; width: 18px; height: 1.5px; margin: 4px auto;
+  background: var(--ink); transition: transform .3s var(--ease), opacity .2s;
+}
+.nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(5.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:last-child  { transform: translateY(-5.5px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .nav-toggle { display: block; }
+  .site-nav {
+    position: fixed; inset: var(--header-h) 0 auto 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: 8px var(--rail) 20px;
+    background: rgba(255, 255, 255, .98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px -24px rgba(0, 0, 0, .35);
+    transform: translateY(-8px); opacity: 0; visibility: hidden;
+    transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+  }
+  .site-nav[data-open] { transform: none; opacity: 1; visibility: visible; }
+  .site-nav > a { padding: 16px 4px; font-size: 20px; font-weight: 700; border-bottom: 1px solid rgba(0, 0, 0, .08); }
+  .site-nav .btn--dark { margin-top: 16px; padding: 16px 24px; font-size: 16px; }
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+
+.site-footer { padding: 64px var(--rail) 28px; }
+.footer-top {
+  display: flex; flex-wrap: wrap; align-items: flex-start;
+  justify-content: space-between; gap: 32px;
+  padding-bottom: 32px; border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+.footer-nav { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; font-weight: 600; }
+.footer-nav a { display: inline-flex; align-items: center; min-height: 26px; }
+.footer-bottom {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;
+  padding-top: 20px; font-size: 12px; font-weight: 500; color: var(--ink-mute);
+}
+
+/* ── Booking dialog ─────────────────────────────────────────────────────── */
+
+.booking {
+  width: min(440px, calc(100vw - 24px));
+  padding: 32px; border: none; border-radius: var(--r);
+  background: var(--paper); color: var(--ink);
+}
+.booking::backdrop { background: rgba(0, 0, 0, .45); backdrop-filter: blur(4px); }
+.booking[open] { animation: dialog-in .35s var(--ease); }
+@keyframes dialog-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+
+.booking__close-form { position: absolute; top: 16px; right: 16px; }
+.booking__close {
+  width: 36px; height: 36px; padding: 0; font-size: 22px; line-height: 1;
+  background: none; border: 1px solid rgba(0, 0, 0, .2); border-radius: var(--r-pill);
+  cursor: pointer; transition: background-color .2s, color .2s;
+}
+.booking__close:hover { background: var(--ink); color: var(--white); }
+
+.booking .card__note { margin: 12px 0 20px; }
+.booking__form { display: flex; flex-direction: column; gap: 14px; }
+.booking__form label {
+  display: flex; flex-direction: column; gap: 6px;
+  font-size: 13px; font-weight: 600;
+}
+.booking__form input,
+.booking__form select {
+  padding: 13px 14px; font: inherit; font-size: 15px; font-weight: 500;
+  background: var(--white); color: var(--ink);
+  border: 1px solid rgba(0, 0, 0, .16); border-radius: 10px;
+}
+.booking__form input:focus-visible,
+.booking__form select:focus-visible { outline-offset: 0; border-color: var(--ink); }
+.booking__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.booking__actions .btn { flex: 1; }
+
+/* Scroll reveals start at opacity 0 via JS; make sure print never catches a
+   section mid-reveal. */
+@media print {
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .site-header, .splash, .booking { display: none !important; }
+}
+
+/* ── Motion preferences ─────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.className = 'js';</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dr. Ketkar Dental Clinic — Family &amp; Implant Dentistry, Koregaon Park, Pune</title>
+<meta name="description" content="Dr. Mandar Ketkar — gold medalist from Govt. Dental College &amp; Hospital, Mumbai. Implants, root canals, smile makeovers and gentle family dentistry at Koregaon Park, Pune since 2000. Mercury-free practice.">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://drketkardental.com/">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dr. Ketkar Dental Clinic — Koregaon Park, Pune">
+<meta property="og:description" content="Professional dental care with modern equipment and gentle hands. Implants, root canals and smile makeovers since 2000.">
+<meta property="og:image" content="assets/img/clinic-interior.webp">
+<meta property="og:url" content="https://drketkardental.com/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23000'/%3E%3Ctext x='16' y='23' font-family='system-ui,sans-serif' font-size='18' font-weight='800' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+
+<!-- Open Sauce One is self-hosted (see assets/fonts/OFL.txt) — the design's
+     typeface, real weights, no third-party font CDN. -->
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/open-sauce-one-600.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/open-sauce-one-700.woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/hero-doctor.webp" fetchpriority="high">
+<link rel="stylesheet" href="styles/base.css">
+<link rel="stylesheet" href="styles/sections.css">
+<link rel="stylesheet" href="styles/content.css">
+</head>
+<body>
+
+<!--
+  ─────────────────────────────────────────────────────────────
+  TODO before go-live — replace the placeholder contact details.
+  They appear in: the JSON-LD block below, the .site-header,
+  the #visit section, the booking dialog and the footer.
+  Search for "PLACEHOLDER" to find every one.
+  ─────────────────────────────────────────────────────────────
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "name": "Dr. Ketkar Dental Clinic",
+  "description": "Family and implant dentistry at Koregaon Park, Pune. Mercury-free, eco-sensitive practice run by Dr. Mandar Ketkar since 2000.",
+  "url": "https://drketkardental.com/",
+  "image": "https://drketkardental.com/assets/img/clinic-interior.webp",
+  "telephone": "+91-00000-00000",
+  "priceRange": "₹₹",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "PLACEHOLDER — street address",
+    "addressLocality": "Koregaon Park, Pune",
+    "addressRegion": "Maharashtra",
+    "postalCode": "411001",
+    "addressCountry": "IN"
+  },
+  "founder": { "@type": "Person", "name": "Dr. Mandar Ketkar", "jobTitle": "Dental Surgeon" },
+  "medicalSpecialty": "Dentistry",
+  "availableService": [
+    { "@type": "MedicalProcedure", "name": "Root Canal Treatment" },
+    { "@type": "MedicalProcedure", "name": "Cleaning & Polishing" },
+    { "@type": "MedicalProcedure", "name": "Dental Implants" },
+    { "@type": "MedicalProcedure", "name": "Surgical Extractions" },
+    { "@type": "MedicalProcedure", "name": "Dentures & Gum Care" }
+  ],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "10:00", "closes": "20:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "17:00" }
+  ]
+}
+</script>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Loading counter, first visit of the session only -->
+<div class="splash" id="splash" aria-hidden="true" hidden>
+  <span class="splash__count" id="splashCount">0</span>
+</div>
+
+<header class="site-header" id="siteHeader">
+  <a class="logo" href="#top" aria-label="Dr. Ketkar Dental Clinic — home">
+    <span class="logo__line">Ketkar</span>
+    <span class="logo__line">Dental</span>
+    <span class="logo__sub">dr. ketkar dental clinic</span>
+  </a>
+
+  <nav class="site-nav" id="siteNav" aria-label="Primary">
+    <a href="#services">Services</a>
+    <a href="#implants">Implants</a>
+    <a href="#about">About</a>
+    <a href="#visit">Visit</a>
+    <!-- PLACEHOLDER phone -->
+    <a class="nav-emergency" href="tel:+910000000000"><span class="pulse" aria-hidden="true"></span>Dental Emergency</a>
+    <button class="btn btn--dark" data-book>Book Appointment</button>
+  </nav>
+
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main id="main">
+
+  <!-- ── 1. Hero ─────────────────────────────────────────── -->
+  <section class="sect sect--hero" id="top" data-sect="1">
+    <div class="hero-panel">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="mask" data-mask="1" data-mobile-pos="50% 8%" data-mobile-size="cover"></div>
+      <div class="hero-ground" aria-hidden="true"></div>
+
+      <p class="hero-place rise" style="--i:0"><span class="dot" aria-hidden="true"></span>Koregaon Park, Pune</p>
+
+      <div class="hero-block">
+        <span class="hero-kicker rise" style="--i:1">Trusted family dentistry — Dr. Ketkar</span>
+        <h1 class="hero-title">
+          <span class="rise" style="--i:2">Dental</span>
+          <span class="rise" style="--i:3">Care</span>
+        </h1>
+        <p class="hero-lede rise" style="--i:4">Professional dental care with modern equipment and gentle hands — implants, root canals and smile makeovers, all under one roof.</p>
+        <div class="hero-cta rise" style="--i:5">
+          <button class="btn btn--dark btn--lg" data-book>Book an appointment</button>
+          <!-- PLACEHOLDER phone -->
+          <a class="btn btn--ghost btn--lg" href="tel:+910000000000">Call the clinic</a>
+        </div>
+      </div>
+
+      <ul class="hero-proof rise" style="--i:6">
+        <li><strong>Gold medalist</strong><span>Govt. Dental College &amp; Hospital, Mumbai</span></li>
+        <li><strong>Since 2000</strong><span>Private practice at Koregaon Park</span></li>
+        <li><strong>Mercury-free</strong><span>No amalgam, disciplined bio-waste</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── 2. Team + services ──────────────────────────────── -->
+  <section class="sect sect--services" id="services" data-sect="2" aria-labelledby="servicesHeading">
+    <div class="services-grid">
+
+      <div class="tile tile--gallery" data-reveal="0">
+        <div class="mask" data-mask="2" data-focal="0.5" data-mobile-pos="50% 22%"></div>
+        <h2 class="tile__title" id="servicesHeading">Smile Gallery</h2>
+        <span class="tile__note">Our cosmetic dental work</span>
+      </div>
+
+      <div class="tile tile--call" data-reveal="1">
+        <div class="mask" data-mask="2" data-focal="0.5" data-mobile-pos="50% 18%"></div>
+        <p class="tile__copy">If you want a healthier, brighter smile,<br>call the clinic to book a consultation.</p>
+        <!-- PLACEHOLDER phone -->
+        <a class="btn btn--light tile__cta" href="tel:+910000000000">Call Us</a>
+      </div>
+
+      <div class="tile tile--makeover" data-reveal="2">
+        <div class="mask" data-mask="2" data-focal="0.5" data-mobile-pos="50% 30%"></div>
+        <h2 class="tile__display">Smile<br>makeover</h2>
+      </div>
+
+      <div class="tile tile--treatments" data-reveal="3">
+        <div class="mask" data-mask="2" data-focal="0.5" data-mobile-pos="50% 45%"></div>
+        <ul class="treatments">
+          <li class="treatment treatment--solid"><h3>Root Canal<br>Treatment</h3><span class="treatment__num">01</span></li>
+          <li class="treatment"><h3>Cleaning &amp;<br>Polishing</h3><span class="treatment__num">02</span></li>
+          <li class="treatment"><h3>Dental<br>Implants</h3><span class="treatment__num">03</span></li>
+          <li class="treatment"><h3>Surgical<br>Extractions</h3><span class="treatment__num">04</span></li>
+          <li class="treatment"><h3>Dentures &amp;<br>Gum Care</h3><span class="treatment__num">05</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 3. Implant dentistry ────────────────────────────── -->
+  <section class="sect sect--implants" id="implants" data-sect="3" aria-labelledby="implantsHeading">
+    <div class="implants-grid">
+
+      <div class="implants-col">
+        <div class="card card--paper implants-intro" data-reveal="0">
+          <h2 class="display" id="implantsHeading">Implant<br>Dentistry</h2>
+          <p class="card__note">Restore missing teeth — implants, bridges and artificial teeth fixing</p>
+        </div>
+
+        <div class="implants-shots" data-reveal="1">
+          <figure><img src="assets/img/implant-1.webp" alt="Close-up of a dental implant crown being seated" loading="lazy" width="1280" height="1280"></figure>
+          <figure><img src="assets/img/implant-2.webp" alt="Cross-section showing a titanium implant post in the jaw" loading="lazy" width="1280" height="1280"></figure>
+        </div>
+
+        <div class="card card--mist implants-consult" data-reveal="2">
+          <div>
+            <p class="card__note">Consultation</p>
+            <h3 class="card__heading">Denture<br>&amp; Gum Care<br>Solutions</h3>
+          </div>
+          <button class="btn btn--light" data-book>Book Online</button>
+        </div>
+      </div>
+
+      <div class="implants-photo" data-reveal="3">
+        <img src="assets/img/clinic-interior.webp" alt="Reception and waiting area at Dr. Ketkar Dental Clinic" loading="lazy" width="1280" height="853">
+        <div class="photo-cards">
+          <article class="photo-card">
+            <h4>The Process<br>of Installing<br>Implants</h4>
+            <span class="arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12m0 0L8 2m5 5L8 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+          <article class="photo-card photo-card--glass">
+            <h4>Caring<br>for Dental<br>Implants</h4>
+            <span class="arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12m0 0L8 2m5 5L8 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 4. About Dr. Ketkar ─────────────────────────────── -->
+  <section class="sect sect--about" id="about" data-sect="4" aria-labelledby="aboutHeading">
+    <div class="about-grid">
+
+      <div class="about-col">
+        <div class="card card--paper about-bio" data-reveal="0">
+          <div>
+            <p class="eyebrow">About the clinic</p>
+            <h2 class="display display--tight" id="aboutHeading">Dr. Mandar<br>Ketkar</h2>
+            <p class="prose">A gold medalist from the Govt. Dental College &amp; Hospital, Mumbai — one of India's premier dental schools — Dr. Ketkar has run his private practice at Koregaon Park since 2000.</p>
+          </div>
+          <p class="prose">He attends CDE seminars and hands-on workshops through the year, so patients are treated with materials and techniques that reflect current practice rather than habit.</p>
+        </div>
+
+        <blockquote class="card card--mist about-quote" data-reveal="1">
+          <p>“Continued dental education and keeping abreast of newer concepts and technologies is a vital part of dental practice.”</p>
+          <cite>Dr. Mandar Ketkar</cite>
+        </blockquote>
+      </div>
+
+      <div class="about-col">
+        <div class="about-portrait" data-reveal="2">
+          <img src="assets/img/hero-doctor.webp" alt="Portrait of Dr. Mandar Ketkar" loading="lazy" width="1254" height="1254">
+        </div>
+
+        <div class="facts" data-reveal="3">
+          <div class="fact"><span class="fact__value">2000</span><span class="fact__label">Practising at Koregaon Park since</span></div>
+          <div class="fact"><span class="fact__value">Gold</span><span class="fact__label">Medalist — Govt. Dental College &amp; Hospital, Mumbai</span></div>
+          <div class="fact fact--dark"><span class="fact__value">Hg-free</span><span class="fact__label">Mercury and amalgam-free practice — no toxic chemicals into the environment</span></div>
+          <div class="fact"><span class="fact__value">Eco</span><span class="fact__label">Eco-sensitive design and disciplined bio-waste management</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 5. Visit ────────────────────────────────────────── -->
+  <section class="sect sect--visit" id="visit" data-sect="5" aria-labelledby="visitHeading">
+    <div class="visit-grid">
+
+      <div class="card card--paper visit-intro" data-reveal="0">
+        <div>
+          <p class="eyebrow">Visit the clinic</p>
+          <h2 class="display display--tight" id="visitHeading">Koregaon<br>Park, Pune</h2>
+        </div>
+        <dl class="visit-details">
+          <div>
+            <dt>Address</dt>
+            <!-- PLACEHOLDER address -->
+            <dd>PLACEHOLDER — street address,<br>Koregaon Park, Pune 411001</dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <!-- PLACEHOLDER phone -->
+            <dd><a href="tel:+910000000000">+91 00000 00000</a></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <!-- PLACEHOLDER email -->
+            <dd><a href="mailto:hello@drketkardental.com">hello@drketkardental.com</a></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="visit-col">
+        <div class="card card--mist visit-hours" data-reveal="1">
+          <h3 class="card__heading">Clinic Hours</h3>
+          <ul class="hours">
+            <li><span>Mon — Fri</span><span>10:00 — 20:00</span></li>
+            <li><span>Saturday</span><span>10:00 — 17:00</span></li>
+            <li><span>Sunday</span><span>By appointment</span></li>
+          </ul>
+          <p class="card__note">Emergencies are seen the same day whenever the chair is free — call before you travel.</p>
+        </div>
+
+        <div class="visit-actions" data-reveal="2">
+          <button class="card card--dark action" data-book>
+            <span class="action__label">Book an appointment</span>
+            <span class="arrow arrow--light" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12m0 0L8 2m5 5L8 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <!-- PLACEHOLDER map query -->
+          <a class="card card--paper action" href="https://www.google.com/maps/search/?api=1&query=Dr+Ketkar+Dental+Clinic+Koregaon+Park+Pune" target="_blank" rel="noopener">
+            <span class="action__label">Get directions</span>
+            <span class="arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12m0 0L8 2m5 5L8 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="visit-map" data-reveal="3">
+        <!-- PLACEHOLDER map query — swap for the clinic's exact pin -->
+        <iframe
+          title="Map showing Dr. Ketkar Dental Clinic in Koregaon Park, Pune"
+          src="https://www.google.com/maps?q=Koregaon%20Park%2C%20Pune&output=embed"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <a class="logo logo--footer" href="#top">
+      <span class="logo__line">Ketkar</span>
+      <span class="logo__line">Dental</span>
+      <span class="logo__sub">dr. ketkar dental clinic</span>
+    </a>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#services">Services</a>
+      <a href="#implants">Implants</a>
+      <a href="#about">About</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year">2026</span> Dr. Ketkar Dental Clinic · Koregaon Park, Pune</span>
+    <span>Mercury-free · Eco-sensitive practice</span>
+  </div>
+</footer>
+
+<!-- Booking: no backend, so the form hands off to WhatsApp or the phone -->
+<dialog class="booking" id="booking" aria-labelledby="bookingTitle">
+  <form method="dialog" class="booking__close-form">
+    <button class="booking__close" aria-label="Close">&times;</button>
+  </form>
+  <h2 class="card__heading" id="bookingTitle">Book an<br>appointment</h2>
+  <p class="card__note">Send the details straight to the clinic — we confirm the slot by reply.</p>
+  <form class="booking__form" id="bookingForm">
+    <label>Your name
+      <input type="text" name="name" required autocomplete="name" placeholder="Full name">
+    </label>
+    <label>Phone
+      <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" placeholder="+91 00000 00000">
+    </label>
+    <label>Treatment
+      <select name="treatment">
+        <option>General check-up</option>
+        <option>Root canal treatment</option>
+        <option>Cleaning &amp; polishing</option>
+        <option>Dental implants</option>
+        <option>Surgical extraction</option>
+        <option>Dentures &amp; gum care</option>
+        <option>Smile makeover</option>
+        <option>Dental emergency</option>
+      </select>
+    </label>
+    <label>Preferred date
+      <input type="date" name="date">
+    </label>
+    <div class="booking__actions">
+      <button type="submit" class="btn btn--dark">Send on WhatsApp</button>
+      <!-- PLACEHOLDER phone -->
+      <a class="btn btn--outline" href="tel:+910000000000">Call the clinic</a>
+    </div>
+  </form>
+</dialog>
+
+<script src="scripts/main.js" defer></script>
+</body>
+</html>
