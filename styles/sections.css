@@ -25,7 +25,7 @@
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  padding-top: clamp(76px, 11vh, 96px);
+  padding-top: calc(var(--header-h) + var(--gap));
   position: relative;
 }
 
@@ -63,20 +63,7 @@
 .hero-panel > .mask { z-index: 2; background-color: transparent; }
 .hero-panel > *:not(.hero-glow):not(.mask):not(.hero-ground) { position: relative; z-index: 10; }
 
-.hero-place {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .02em;
-  color: var(--ink-soft);
-}
-.hero-place .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
-
-.hero-block { margin-top: auto; margin-bottom: auto; padding-top: clamp(16px, 4vh, 40px); }
-
-.hero-kicker { display: block; font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.hero-block { margin-top: auto; margin-bottom: auto; }
 
 .hero-title {
   font-size: min(clamp(3rem, 10.5vw, 10rem), 25vh);
@@ -209,7 +196,7 @@
 }
 
 @media (max-width: 900px) {
-  .sect--hero { height: auto; min-height: 100svh; padding-top: calc(var(--header-h) + 4px); }
+  .sect--hero { height: auto; min-height: 100svh; }
 
   /* Stacked, the portrait becomes a cropped photo band across the top — a
      hard crop reads as deliberate where a faded cut-off does not. */
@@ -225,69 +212,120 @@
   }
   .hero-glow, .hero-ground { display: none; }
 
-  .hero-place { margin-top: var(--band); padding-top: 20px; }
-  .hero-block { margin: 0; padding-top: 22px; }
+  .hero-block { margin: 0; padding-top: calc(var(--band) + 24px); }
   .hero-lede { max-width: none; }
   .hero-cta { gap: 8px; }
   .hero-cta .btn { flex: 1 1 auto; }
 
-  .hero-proof {
-    margin-top: 28px;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+  /* A clipped swipe row reads as broken. Three short claims fit as pills. */
+  .hero-proof { margin-top: 26px; flex-wrap: wrap; gap: 6px; }
+  .hero-proof li {
+    flex: 0 0 auto;
+    padding: 9px 14px;
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, .62);
   }
-  .hero-proof::-webkit-scrollbar { display: none; }
-  .hero-proof li { flex: 0 0 66%; scroll-snap-align: start; background: rgba(255, 255, 255, .6); }
+  .hero-proof strong { font-size: 13px; }
+  .hero-proof span { display: none; }
 
+  /* One photograph spanning four tiles is a desktop idea. Stacked, each tile
+     became an arbitrary crop with copy sitting on somebody's face — so the
+     photo belongs to ONE tile here and the rest become solid surfaces. */
   .sect--services { height: auto; overflow: visible; }
   .services-grid { grid-template-columns: 1fr; grid-template-rows: none; }
   .tile--call, .tile--treatments { grid-row: auto; grid-column: auto; }
 
-  .tile--gallery  { min-height: 30vh; }
-  .tile--call     { min-height: 52vh; }
-  .tile--makeover { min-height: 30vh; }
-  .tile--treatments { min-height: 220px; }
+  .tile--makeover { order: 2; }
+  .tile--call     { order: 3; }
+  .tile--treatments { order: 4; }
 
-  /* Stacked tiles crop into the middle of the group photo, so the black
-     copy needs a scrim where it sits. */
-  .tile--gallery::after,
-  .tile--call::after,
-  .tile--makeover::after {
+  .tile--call > .mask,
+  .tile--makeover > .mask,
+  .tile--treatments > .mask { display: none; }
+
+  /* The team, shown whole and uncropped by text. */
+  .tile--gallery { aspect-ratio: 4 / 3; background: var(--sand); }
+  .tile--gallery > .mask { background-size: cover; background-position: 50% 16%; }
+  .tile--gallery::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: auto 0 0 0;
+    height: 46%;
     z-index: 5;
     pointer-events: none;
+    background: linear-gradient(to top, rgba(250, 250, 249, .97) 22%, rgba(250, 250, 249, 0));
   }
-  .tile--gallery::after {
-    background:
-      linear-gradient(to bottom, rgba(255, 255, 255, .88), rgba(255, 255, 255, 0) 34%),
-      linear-gradient(to top, rgba(255, 255, 255, .88), rgba(255, 255, 255, 0) 28%);
+  .tile__title {
+    top: auto;
+    bottom: 50px;
+    left: 20px;
+    font-size: clamp(26px, 7.5vw, 34px);
   }
-  .tile--makeover::after { background: linear-gradient(to bottom, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0) 42%); }
-  .tile--call::after     { background: linear-gradient(to top, rgba(255, 255, 255, .92), rgba(255, 255, 255, 0) 34%); }
+  .tile__note { bottom: 22px; left: 20px; color: var(--ink-soft); }
 
-  .tile__display { font-size: clamp(2.5rem, 12vw, 4rem); }
-  .tile__title { font-size: 28px; left: 20px; }
-  .tile__note, .tile__copy { left: 20px; }
-  .tile__copy { bottom: 92px; }
-  .tile__cta { right: 20px; padding: 16px 28px; font-size: 17px; }
-
-  /* Five cards do not fit a phone row — swipe through them instead. */
-  .treatments {
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+  .tile--makeover { background: var(--mist); padding: 26px 20px; min-height: 0; }
+  .tile__display {
+    position: static;
+    font-size: clamp(2.6rem, 13vw, 4rem);
+    letter-spacing: -.02em;
   }
-  .treatments::-webkit-scrollbar { display: none; }
-  .treatment { flex: 0 0 62%; scroll-snap-align: start; }
-  .treatment:hover { transform: none; }
+
+  .tile--call {
+    background: var(--ink);
+    color: var(--white);
+    padding: 26px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .tile__copy {
+    position: static;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--white);
+  }
+  .tile__copy br { display: none; }
+  /* On the black card the brand colour is the one thing that should pop. */
+  .tile__cta {
+    position: static;
+    width: 100%;
+    padding: 17px 28px;
+    font-size: 17px;
+    background: var(--coral);
+    color: var(--white);
+  }
+  .tile__cta:hover { background: var(--white); color: var(--ink); transform: none; }
+
+  /* A scannable list beats five glass cards swiped sideways. */
+  .tile--treatments { background: var(--paper); padding: 8px 20px 12px; }
+  .treatments { position: static; display: block; padding: 0; }
+  .treatment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 17px 0;
+    border-radius: 0;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .11);
+    color: var(--ink);
+  }
+  .treatment:last-child { border-bottom: none; }
+  .treatment:hover { transform: none; background: none; }
+  .treatment h3 { font-size: 19px; line-height: 1.25; }
+  .treatment h3 br { display: none; }
+  .treatment__num {
+    align-self: center;
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+    border-color: rgba(0, 0, 0, .28);
+    color: var(--ink-mute);
+  }
 }
 
-@media (max-width: 560px) {
-  .treatment { flex-basis: 72%; }
-  .hero-proof li { flex-basis: 78%; }
-}

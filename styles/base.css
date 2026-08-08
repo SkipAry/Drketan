@@ -21,6 +21,11 @@
   --sand-warm:  #e7e3dc;
   --white:      #fff;
 
+  /* The clinic is named Coral and the team wears it — sampled from the
+     scrubs in team-section2.webp. Accent only; too light for body text. */
+  --coral:      #e8705f;
+  --coral-deep: #b8442f;   /* passes AA on light surfaces */
+
   --gap:  8px;
   --rail: 20px;
   --r:    16px;
@@ -69,6 +74,25 @@ a:hover { color: var(--ink-mute); }
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* Browser chrome ships with defaults that belong to no design system.
+   Selection, caret, scrollbar and numerals are part of the page too. */
+::selection { background: var(--coral); color: var(--white); }
+::-moz-selection { background: var(--coral); color: var(--white); }
+
+html {
+  caret-color: var(--ink);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, .32) transparent;
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .26);
+  border: 3px solid var(--white);
+  border-radius: var(--r-pill);
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, .45); }
 
 .skip-link {
   position: fixed; top: 8px; left: 8px; z-index: 200;
@@ -169,13 +193,13 @@ a:hover { color: var(--ink-mute); }
 
 .nav-emergency { display: inline-flex; align-items: center; gap: 8px; }
 .pulse {
-  width: 7px; height: 7px; border-radius: 50%; background: #d33;
-  box-shadow: 0 0 0 0 rgba(221, 51, 51, .55);
+  width: 7px; height: 7px; border-radius: 50%; background: var(--coral);
+  box-shadow: 0 0 0 0 rgba(232, 112, 95, .6);
   animation: pulse 2s infinite;
 }
 @keyframes pulse {
-  70%  { box-shadow: 0 0 0 8px rgba(221, 51, 51, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(221, 51, 51, 0); }
+  70%  { box-shadow: 0 0 0 8px rgba(232, 112, 95, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 112, 95, 0); }
 }
 
 .nav-toggle {
@@ -263,7 +287,7 @@ a:hover { color: var(--ink-mute); }
 /* Scroll reveals start at opacity 0 via JS; make sure print never catches a
    section mid-reveal. */
 @media print {
-  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .rise { opacity: 1 !important; transform: none !important; animation: none !important; }
   .site-header, .splash, .booking { display: none !important; }
 }
 

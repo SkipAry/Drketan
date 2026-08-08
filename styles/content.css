@@ -40,14 +40,6 @@
   letter-spacing: -.02em;
 }
 
-.eyebrow {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-
 .prose {
   max-width: 56ch;
   font-size: var(--fs-prose);
@@ -158,7 +150,6 @@
   justify-content: space-between;
   gap: 24px;
 }
-.about-bio .eyebrow { margin-bottom: 18px; }
 .about-bio .display { margin-bottom: 22px; }
 
 .about-quote {
@@ -194,7 +185,7 @@
   justify-content: space-between;
   gap: 12px;
 }
-.fact__value { font-size: 30px; font-weight: 700; line-height: 1; }
+.fact__value { font-size: 30px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
 .fact__label { font-size: 14px; font-weight: 600; line-height: 1.35; color: var(--ink-soft); }
 .fact--dark { background: var(--ink); }
 .fact--dark .fact__value { color: var(--white); }
@@ -221,7 +212,6 @@
   gap: 32px;
   min-height: clamp(320px, 46vh, 460px);
 }
-.visit-intro .eyebrow { margin-bottom: 18px; }
 
 .visit-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
 .visit-details dt { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-mute); }
@@ -238,6 +228,7 @@
   padding: 11px 0;
   font-size: 15px;
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 .hours li:last-child { border-bottom: none; }

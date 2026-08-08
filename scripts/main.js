@@ -1,5 +1,5 @@
 /* ==========================================================================
-   main.js — behaviour for the Ketkar Dental site.
+   main.js — behaviour for the Coral Dental site.
    The only non-obvious part is layout(): sections 1 and 2 paint a *single*
    photograph across several rounded tiles, so each tile's background-position
    has to be derived from its offset inside the section. Ported from the
@@ -96,37 +96,18 @@ function watchLayout() {
   layout();
 }
 
-/* ── Scroll reveals ─────────────────────────────────────────────────────── */
+/* ── Header height ──────────────────────────────────────────────────────── */
 
-function setupReveal() {
-  const sections = Array.from(document.querySelectorAll('[data-sect]'));
-  if (reduceMotion()) return;
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.intersectionRatio < 0.15) return;
-      io.unobserve(e.target);
-      e.target.querySelectorAll('[data-reveal]').forEach(el => {
-        const delay = (parseInt(el.dataset.reveal, 10) || 0) * 120;
-        el.style.transition =
-          'opacity .6s cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms,' +
-          'transform .6s cubic-bezier(0.16,1,0.3,1) ' + delay + 'ms';
-        requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'none'; });
-      });
-    });
-  }, { threshold: [0, 0.15, 0.5] });
-
-  sections.forEach(s => {
-    const r = s.getBoundingClientRect();
-    const inView = r.top < window.innerHeight && r.bottom > 0;
-    if (!inView) {
-      s.querySelectorAll('[data-reveal]').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(24px)';
-      });
-    }
-    io.observe(s);
-  });
+/* The header is fixed and its height changes with zoom, font fallback and
+   viewport. A hardcoded --header-h let the hero slide under it, so measure
+   the real element instead of guessing. */
+function trackHeaderHeight() {
+  const header = document.getElementById('siteHeader');
+  if (!header) return;
+  const apply = () =>
+    document.documentElement.style.setProperty('--header-h', Math.ceil(header.offsetHeight) + 'px');
+  new ResizeObserver(apply).observe(header);
+  apply();
 }
 
 /* ── Splash counter (first view of the session only) ────────────────────── */
@@ -204,7 +185,7 @@ function setupBooking() {
     e.preventDefault();
     const f = new FormData(form);
     const lines = [
-      'Appointment request — Dr. Ketkar Dental Clinic',
+      'Appointment request — Coral Dental',
       'Name: ' + f.get('name'),
       'Phone: ' + f.get('phone'),
       'Treatment: ' + f.get('treatment')
@@ -219,8 +200,8 @@ function setupBooking() {
 /* ── Boot ───────────────────────────────────────────────────────────────── */
 
 document.getElementById('year').textContent = new Date().getFullYear();
+trackHeaderHeight();
 setupSplash();
 setupHeader();
 setupBooking();
-setupReveal();
 watchLayout();

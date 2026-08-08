@@ -1,6 +1,6 @@
-# Dr. Ketkar Dental Clinic — website
+# Coral Dental — website
 
-Static site built from the Claude Design handoff in
+Static site for Coral Dental (Dr. Mandar Ketkar). Built from the Claude Design handoff in
 `Dr. Ketkar Dental Clinic UI-handoff/`. No build step, no dependencies —
 open `index.html` or serve the folder.
 
