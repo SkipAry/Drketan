@@ -102,24 +102,6 @@ html {
 }
 .skip-link:focus-visible { transform: none; color: var(--white); }
 
-/* ── Splash ─────────────────────────────────────────────────────────────── */
-
-.splash {
-  position: fixed; inset: 0; z-index: 100;
-  display: flex; align-items: flex-end; justify-content: flex-start;
-  background: var(--white);
-  transition: opacity .7s ease;
-}
-.splash[hidden] { display: none; }  /* author rule must beat .splash{display:flex} */
-.splash[data-exiting] { opacity: 0; pointer-events: none; }
-.splash__count {
-  padding: 40px;
-  font-size: clamp(4rem, 11vw, 9rem);
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-
 /* ── Buttons ────────────────────────────────────────────────────────────── */
 
 .btn {
@@ -288,7 +270,7 @@ html {
    section mid-reveal. */
 @media print {
   .rise { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .site-header, .splash, .booking { display: none !important; }
+  .site-header, .booking { display: none !important; }
 }
 
 /* ── Motion preferences ─────────────────────────────────────────────────── */

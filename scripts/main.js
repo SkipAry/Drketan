@@ -62,7 +62,8 @@ function layoutServices(mobile) {
   const imageWidth = nat.w * scale;
   const imageHeight = nat.h * scale;
   const overflow = Math.max(imageWidth - sr.width, 0);
-  const voff = -sr.height * 0.12;
+  // Raise the group so every face clears the treatments row along the bottom.
+  const voff = -sr.height * 0.035;
 
   masks.forEach(el => {
     const r = el.getBoundingClientRect();
@@ -110,31 +111,9 @@ function trackHeaderHeight() {
   apply();
 }
 
-/* ── Splash counter (first view of the session only) ────────────────────── */
+/* ── Hero entrance ──────────────────────────────────────────────────────── */
 
 const startHero = () => document.body.setAttribute('data-ready', '');
-
-function setupSplash() {
-  const splash = document.getElementById('splash');
-  const out = document.getElementById('splashCount');
-  if (!splash) return startHero();
-  if (reduceMotion() || sessionStorage.getItem('ketkar:seen')) return startHero();
-
-  sessionStorage.setItem('ketkar:seen', '1');
-  splash.hidden = false;
-  document.body.style.overflow = 'hidden';
-
-  let n = 0;
-  const timer = setInterval(() => {
-    out.textContent = ++n;
-    if (n < 100) return;
-    clearInterval(timer);
-    setTimeout(() => splash.setAttribute('data-exiting', ''), 200);
-    // hero copy starts rising while the splash is still fading out
-    setTimeout(startHero, 400);
-    setTimeout(() => { splash.hidden = true; document.body.style.overflow = ''; }, 900);
-  }, 20);
-}
 
 /* ── Header: hide going down, reveal going up ───────────────────────────── */
 
@@ -201,7 +180,7 @@ function setupBooking() {
 
 document.getElementById('year').textContent = new Date().getFullYear();
 trackHeaderHeight();
-setupSplash();
+startHero();
 setupHeader();
 setupBooking();
 watchLayout();

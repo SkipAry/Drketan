@@ -130,16 +130,6 @@
 .tile__copy  { position: absolute; bottom: 80px; left: 28px; z-index: 10; font-size: 14px; font-weight: 600; line-height: 20px; }
 .tile__cta   { position: absolute; bottom: 24px; right: 24px; z-index: 10; }
 
-.tile__display {
-  position: absolute;
-  top: 24px;
-  left: 28px;
-  z-index: 10;
-  font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 700;
-  line-height: .9;
-}
-
 .treatments {
   position: absolute;
   inset: 0;
@@ -196,136 +186,121 @@
 }
 
 @media (max-width: 900px) {
+  /* Same idea as desktop: the photograph is the backdrop and the copy sits
+     over it. Scrims carry the black type across the picture — the portrait
+     is a keyed cut-out, so it fades into the panel with no hard edge. */
+
   .sect--hero { height: auto; min-height: 100svh; }
 
-  /* Stacked, the portrait becomes a cropped photo band across the top — a
-     hard crop reads as deliberate where a faded cut-off does not. */
+  /* --band pins the portrait's height, the fade's end and where the copy
+     starts to one number, so they cannot drift apart across devices. */
   .hero-panel {
-    --band: clamp(210px, 34vh, 320px);
-    padding: 0 20px 20px;
+    --band: clamp(250px, 43vh, 400px);
+    padding: 20px;
     justify-content: flex-start;
   }
   .hero-panel > .mask {
     inset: 0 0 auto 0;
     height: var(--band);
-    background-color: var(--sand);
   }
-  .hero-glow, .hero-ground { display: none; }
+  .hero-glow {
+    display: block;
+    z-index: 4;
+    background: linear-gradient(to bottom,
+      rgba(235, 231, 224, 0) calc(var(--band) - 104px),
+      rgba(235, 231, 224, .86) calc(var(--band) - 30px),
+      #ebe7e0 var(--band));
+  }
+  .hero-ground { display: none; }
 
-  .hero-block { margin: 0; padding-top: calc(var(--band) + 24px); }
+  .hero-block { margin: 0; padding-top: calc(var(--band) - 46px); }
   .hero-lede { max-width: none; }
-  .hero-cta { gap: 8px; }
-  .hero-cta .btn { flex: 1 1 auto; }
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 8px; }
+  .hero-cta .btn { width: 100%; }
+  /* translucent glass reads muddy over a photograph */
+  .hero-cta .btn--ghost { background: rgba(255, 255, 255, .92); }
 
-  /* A clipped swipe row reads as broken. Three short claims fit as pills. */
   .hero-proof { margin-top: 26px; flex-wrap: wrap; gap: 6px; }
   .hero-proof li {
     flex: 0 0 auto;
     padding: 9px 14px;
     border-radius: var(--r-pill);
-    background: rgba(255, 255, 255, .62);
+    background: rgba(255, 255, 255, .72);
   }
   .hero-proof strong { font-size: 13px; }
   .hero-proof span { display: none; }
 
-  /* One photograph spanning four tiles is a desktop idea. Stacked, each tile
-     became an arbitrary crop with copy sitting on somebody's face — so the
-     photo belongs to ONE tile here and the rest become solid surfaces. */
+  /* ── Services ─────────────────────────────────────────────────────────── */
+
   .sect--services { height: auto; overflow: visible; }
   .services-grid { grid-template-columns: 1fr; grid-template-rows: none; }
   .tile--call, .tile--treatments { grid-row: auto; grid-column: auto; }
+  .tile--makeover { display: none; }  /* empty once the caption was removed */
 
-  .tile--makeover { order: 2; }
-  .tile--call     { order: 3; }
-  .tile--treatments { order: 4; }
+  /* The team photo is 1559x1009. Matching that ratio means cover crops
+     nothing horizontally, so all four faces stay in frame. */
+  .tile--gallery { aspect-ratio: 1559 / 1009; min-height: 0; }
+  .tile--call    { min-height: 52vh; }
 
-  .tile--call > .mask,
-  .tile--makeover > .mask,
-  .tile--treatments > .mask { display: none; }
-
-  /* The team, shown whole and uncropped by text. */
-  .tile--gallery { aspect-ratio: 4 / 3; background: var(--sand); }
-  .tile--gallery > .mask { background-size: cover; background-position: 50% 16%; }
-  .tile--gallery::after {
+  .tile--gallery::after,
+  .tile--call::after {
     content: '';
     position: absolute;
     inset: auto 0 0 0;
-    height: 46%;
     z-index: 5;
     pointer-events: none;
-    background: linear-gradient(to top, rgba(250, 250, 249, .97) 22%, rgba(250, 250, 249, 0));
   }
-  .tile__title {
-    top: auto;
-    bottom: 50px;
-    left: 20px;
-    font-size: clamp(26px, 7.5vw, 34px);
+  .tile--gallery::after {
+    height: 42%;
+    background: linear-gradient(to top, rgba(247, 245, 242, .97) 26%, rgba(247, 245, 242, 0));
   }
-  .tile__note { bottom: 22px; left: 20px; color: var(--ink-soft); }
-
-  .tile--makeover { background: var(--mist); padding: 26px 20px; min-height: 0; }
-  .tile__display {
-    position: static;
-    font-size: clamp(2.6rem, 13vw, 4rem);
-    letter-spacing: -.02em;
+  .tile--call::after {
+    height: 54%;
+    background: linear-gradient(to top, rgba(247, 245, 242, .97) 34%, rgba(247, 245, 242, 0));
   }
 
-  .tile--call {
-    background: var(--ink);
-    color: var(--white);
-    padding: 26px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-  }
+  .tile__title { top: auto; bottom: 52px; left: 20px; font-size: clamp(26px, 7.5vw, 34px); }
+  .tile__note  { bottom: 24px; left: 20px; color: var(--ink-soft); }
+
   .tile__copy {
-    position: static;
-    font-size: 18px;
-    font-weight: 600;
+    bottom: 92px;
+    left: 20px;
+    right: 20px;
+    font-size: 16px;
     line-height: 1.4;
-    color: var(--white);
   }
   .tile__copy br { display: none; }
-  /* On the black card the brand colour is the one thing that should pop. */
   .tile__cta {
-    position: static;
-    width: 100%;
-    padding: 17px 28px;
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+    padding: 16px 24px;
     font-size: 17px;
     background: var(--coral);
     color: var(--white);
   }
   .tile__cta:hover { background: var(--white); color: var(--ink); transform: none; }
 
-  /* A scannable list beats five glass cards swiped sideways. */
-  .tile--treatments { background: var(--paper); padding: 8px 20px 12px; }
-  .treatments { position: static; display: block; padding: 0; }
+  /* All five treatments, stacked as glass cards over the team photograph. */
+  .tile--treatments { padding: 10px; }
+  .treatments {
+    position: relative;
+    z-index: 10;
+    flex-direction: column;
+    padding: 0;
+  }
   .treatment {
-    display: flex;
+    flex: 1 1 auto;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding: 17px 0;
-    border-radius: 0;
-    background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-bottom: 1px solid rgba(0, 0, 0, .11);
-    color: var(--ink);
+    gap: 14px;
+    padding: 15px 18px;
+    background: rgba(255, 255, 255, .62);
   }
-  .treatment:last-child { border-bottom: none; }
-  .treatment:hover { transform: none; background: none; }
-  .treatment h3 { font-size: 19px; line-height: 1.25; }
+  .treatment--solid { background: rgba(255, 255, 255, .92); }
+  .treatment:hover { transform: none; }
+  .treatment h3 { font-size: 18px; line-height: 1.2; }
   .treatment h3 br { display: none; }
-  .treatment__num {
-    align-self: center;
-    width: 34px;
-    height: 34px;
-    font-size: 12px;
-    border-color: rgba(0, 0, 0, .28);
-    color: var(--ink-mute);
-  }
+  .treatment__num { align-self: center; width: 36px; height: 36px; font-size: 12px; }
 }
-
