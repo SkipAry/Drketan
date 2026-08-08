@@ -232,75 +232,101 @@
 
   /* ── Services ─────────────────────────────────────────────────────────── */
 
+  /* The group shot appears ONCE. Repeating the same photograph down a phone
+     screen reads as a mistake, so the other two tiles carry their own
+     weight as surfaces: a treatment list and a call-to-action.
+     Order: who we are, what we do, how to reach us. */
   .sect--services { height: auto; overflow: visible; }
   .services-grid { grid-template-columns: 1fr; grid-template-rows: none; }
   .tile--call, .tile--treatments { grid-row: auto; grid-column: auto; }
   .tile--makeover { display: none; }  /* empty once the caption was removed */
 
-  /* The team photo is 1559x1009. Matching that ratio means cover crops
-     nothing horizontally, so all four faces stay in frame. */
-  .tile--gallery { aspect-ratio: 1559 / 1009; min-height: 0; }
-  .tile--call    { min-height: 52vh; }
+  .tile--gallery    { order: 1; }
+  .tile--treatments { order: 2; }
+  .tile--call       { order: 3; }
 
-  .tile--gallery::after,
-  .tile--call::after {
-    content: '';
-    position: absolute;
-    inset: auto 0 0 0;
-    z-index: 5;
-    pointer-events: none;
+  .tile--call > .mask,
+  .tile--treatments > .mask { display: none; }
+
+  /* Photo runs in flow at its own 1559x1009 ratio, so nothing is cropped and
+     all four faces are whole. The caption sits under it, not on anybody. */
+  .tile--gallery {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
   }
-  .tile--gallery::after {
-    height: 42%;
-    background: linear-gradient(to top, rgba(247, 245, 242, .97) 26%, rgba(247, 245, 242, 0));
+  .tile--gallery > .mask {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 1559 / 860;   /* trims empty floor, keeps every face */
   }
-  .tile--call::after {
-    height: 54%;
-    background: linear-gradient(to top, rgba(247, 245, 242, .97) 34%, rgba(247, 245, 242, 0));
+  .tile__title {
+    position: static;
+    padding: 18px 20px 0;
+    font-size: clamp(26px, 7.4vw, 32px);
+    letter-spacing: -.02em;
+  }
+  .tile__note {
+    position: static;
+    padding: 6px 20px 20px;
+    color: var(--ink-mute);
   }
 
-  .tile__title { top: auto; bottom: 52px; left: 20px; font-size: clamp(26px, 7.5vw, 34px); }
-  .tile__note  { bottom: 24px; left: 20px; color: var(--ink-soft); }
+  /* Treatments: a solid, scannable list. */
+  .tile--treatments { background: var(--paper); padding: 6px 20px 10px; }
+  .treatments { position: static; display: block; padding: 0; }
+  .treatment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 17px 0;
+    border-radius: 0;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    color: var(--ink);
+  }
+  .treatment:last-child { border-bottom: none; }
+  .treatment:hover { transform: none; background: none; }
+  .treatment h3 { font-size: 18px; line-height: 1.25; }
+  .treatment h3 br { display: none; }
+  .treatment__num {
+    align-self: center;
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+    border-color: rgba(0, 0, 0, .22);
+    color: var(--ink-mute);
+  }
 
+  /* Closing call-to-action. */
+  .tile--call {
+    background: var(--ink);
+    color: var(--white);
+    padding: 26px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 0;
+  }
   .tile__copy {
-    bottom: 92px;
-    left: 20px;
-    right: 20px;
-    font-size: 16px;
-    line-height: 1.4;
+    position: static;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--white);
   }
   .tile__copy br { display: none; }
   .tile__cta {
-    left: 20px;
-    right: 20px;
-    bottom: 22px;
-    padding: 16px 24px;
+    position: static;
+    padding: 17px 28px;
     font-size: 17px;
     background: var(--coral);
     color: var(--white);
   }
   .tile__cta:hover { background: var(--white); color: var(--ink); transform: none; }
-
-  /* All five treatments, stacked as glass cards over the team photograph. */
-  .tile--treatments { padding: 10px; }
-  .treatments {
-    position: relative;
-    z-index: 10;
-    flex-direction: column;
-    padding: 0;
-  }
-  .treatment {
-    flex: 1 1 auto;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 15px 18px;
-    background: rgba(255, 255, 255, .62);
-  }
-  .treatment--solid { background: rgba(255, 255, 255, .92); }
-  .treatment:hover { transform: none; }
-  .treatment h3 { font-size: 18px; line-height: 1.2; }
-  .treatment h3 br { display: none; }
-  .treatment__num { align-self: center; width: 36px; height: 36px; font-size: 12px; }
 }
