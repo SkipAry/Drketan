@@ -128,7 +128,6 @@
 
 .tile__title { position: absolute; top: 24px; left: 28px; z-index: 10; font-size: clamp(26px, 2.3vw, 32px); font-weight: 700; }
 .tile__note  { position: absolute; bottom: 24px; left: 28px; z-index: 10; font-size: 14px; font-weight: 600; letter-spacing: 0; }
-.tile__copy  { position: absolute; bottom: 80px; left: 28px; z-index: 10; font-size: 14px; font-weight: 600; line-height: 1.45; letter-spacing: 0; }
 .tile__cta   { position: absolute; bottom: 24px; right: 24px; z-index: 10; }
 
 .treatments {
@@ -335,14 +334,6 @@
     gap: 16px;
     min-height: 0;
   }
-  .tile__copy {
-    position: static;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.4;
-    color: var(--ink-soft);
-  }
-  .tile__copy br { display: none; }
   .tile__cta {
     position: static;
     padding: 17px 28px;
@@ -380,7 +371,5 @@
   /* The last tile spans both columns, so its name fits on one line. */
   .treatment:last-child h3 br { display: none; }
 
-  /* The Call Us button says this already. */
-  .tile__copy { display: none; }
   .tile--call { padding-top: 6px; }
 }
