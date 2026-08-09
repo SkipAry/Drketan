@@ -305,7 +305,8 @@
 
   .prose { font-size: 14px; }
   .action__label { font-size: 17px; }
-  .hours li, .visit-details dd { font-size: 16px; }
+  .hours li { font-size: 15px; }
+  .visit-details dd { font-size: 14px; }
   .fact__value { font-size: 20px; }
 
   /* Secondary labels, a step under body copy. */
