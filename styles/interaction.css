@@ -1,0 +1,114 @@
+/* ==========================================================================
+   interaction.css — how the page answers a touch.
+
+   Loaded last on purpose: these rules have to win over the hover and
+   material rules declared in the three stylesheets before it.
+
+   Three jobs:
+     1. Respond on pointer-down, never on release.
+     2. Keep pointer-only affordances away from touch screens.
+     3. Give every translucent surface a solid fallback.
+   ========================================================================== */
+
+/* ── 1. Press feedback ────────────────────────────────────────────────────
+   :active fires on pointer-down, so the acknowledgement is immediate — no
+   waiting for the click. The browser's own grey tap flash goes, because we
+   are drawing our own. Large surfaces press less than small ones: the same
+   scale on a full-width card reads as a lurch. */
+
+.btn,
+.tile__cta,
+.action,
+.treatment,
+.photo-card,
+.site-nav > a,
+.footer-nav a,
+.logo,
+.nav-toggle,
+.visit-details a,
+.hero-proof li { -webkit-tap-highlight-color: transparent; }
+
+.btn,
+.action,
+.treatment,
+.nav-toggle { transition: transform 110ms ease-out, background-color .2s, color .2s, border-color .2s; }
+
+.btn:active,
+.nav-toggle:active { transform: scale(.96); }
+
+/* Bigger the surface, smaller the travel. */
+.action:active { transform: scale(.985); }
+.treatment:active { transform: scale(.975); }
+
+.site-nav > a:active,
+.footer-nav a:active,
+.visit-details a:active { opacity: .55; }
+
+.logo:active { opacity: .7; }
+
+/* ── 2. Hover belongs to pointers ─────────────────────────────────────────
+   A touch device has no hover, but it can latch one after a tap and leave an
+   element sitting in its hover state. Anything that moves is withdrawn on
+   touch; the press states above take over. */
+
+@media (hover: none) {
+  .btn--light:hover { transform: none; }
+  .treatment:hover { transform: none; background: rgba(255, 255, 255, .62); }
+  .action:hover { transform: none; }
+  .action:hover .arrow,
+  .photo-card:hover .arrow { transform: none; }
+  .visit-map:hover iframe { filter: grayscale(1) contrast(1.05); }
+}
+
+/* ── 3. Material fallbacks ────────────────────────────────────────────────
+   Every backdrop-filter on the site, made solid. Translucency is a
+   preference, legibility is not. */
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-header,
+  .site-nav,
+  .btn--ghost,
+  .treatment,
+  .treatment--solid,
+  .hero-proof li,
+  .photo-card--glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .site-header, .site-nav { background: var(--white); }
+  .btn--ghost, .treatment, .treatment--solid, .hero-proof li { background: var(--white); }
+  .photo-card--glass { background: rgba(20, 18, 16, .88); }
+  .booking::backdrop { backdrop-filter: none; background: rgba(0, 0, 0, .7); }
+}
+
+@media (prefers-contrast: more) {
+  .site-header,
+  .site-nav,
+  .btn--ghost,
+  .treatment,
+  .hero-proof li,
+  .photo-card--glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--white);
+    color: var(--ink);
+  }
+  .btn--ghost, .treatment, .hero-proof li { border: 1px solid var(--ink); }
+  .photo-card--glass .arrow { border-color: var(--ink); }
+  .card__note, .fact__label, .tile__note { color: var(--ink); }
+  .visit-details dt { color: var(--ink-soft); }
+}
+
+/* ── 4. Small type sets a touch wider ────────────────────────────────────
+   The blanket heading rule tightens every heading, which is right at 53px
+   and wrong at 12. Below ~14px letters need air, not less of it. */
+
+.hero-proof strong { letter-spacing: .005em; }
+.footer-bottom { letter-spacing: .01em; }
+
+/* ── 5. The material is the divider ──────────────────────────────────────
+   A 1px line under floating chrome is the thing translucency exists to
+   replace: the blur and tonal shift already separate the header from what
+   scrolls beneath it. */
+
+.site-header[data-scrolled] { box-shadow: none; }
