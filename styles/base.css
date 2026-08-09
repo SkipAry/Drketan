@@ -299,3 +299,8 @@ html {
     transition-duration: .001ms !important;
   }
 }
+
+@media (max-width: 700px) {
+  .footer-nav { font-size: 15px; }
+  .footer-bottom { font-size: 13px; }
+}

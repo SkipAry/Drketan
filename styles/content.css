@@ -291,3 +291,24 @@
   .fact { min-height: 104px; }
   .visit-actions { grid-template-columns: 1fr; }
 }
+
+/* ── Phone type scale ───────────────────────────────────────────────────────
+   Continues the ramp set in sections.css: 52 hero / 38 section / 26 tile /
+   22 card / 20 quote / 17 body / 16 detail / 15 label / 13 micro.
+   ────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  .display        { font-size: clamp(2.2rem, 9.8vw, 2.5rem); }
+  .display--tight { font-size: clamp(2rem, 8.8vw, 2.25rem); }
+  .card__heading  { font-size: 22px; }
+  .about-quote p  { font-size: 20px; }
+
+  .prose { font-size: 17px; }
+  .action__label { font-size: 17px; }
+  .hours li, .visit-details dd { font-size: 16px; }
+  .fact__value { font-size: 23px; }
+
+  /* 14px is too small for anything a patient actually has to read. */
+  .card__note, .fact__label { font-size: 15px; }
+  .visit-details dt { font-size: 13px; }
+}

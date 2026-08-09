@@ -361,6 +361,22 @@
   }
   .hero-proof strong { font-size: clamp(10.5px, 3.1vw, 13px); white-space: nowrap; }
 
+  /* The phone headline is larger now, so the portrait band and the gaps
+     around the buttons give back the height it borrowed — this keeps the
+     hero to a single screen. Tablet keeps its original proportions. */
+  .hero-panel { --band: clamp(230px, 37vh, 380px); }
+  .hero-cta { margin-top: clamp(16px, 2.1vh, 26px); }
+  .hero-proof { margin-top: 20px; }
+
+  /* Phone type scale. The clamp minimums elsewhere are floors chosen for
+     desktop maximums, not a scale — at 390px the hero headline and every
+     section heading both landed on 48px and the hierarchy disappeared. */
+  .hero-title { font-size: clamp(3.1rem, 13.5vw, 3.6rem); }
+  .hero-lede  { font-size: 17px; line-height: 1.55; }
+  .tile__title { font-size: 26px; }
+  .tile__note  { font-size: 15px; }
+  .treatment h3 { font-size: 16.5px; }
+
   /* Treatment names carry themselves; the numbering added nothing. */
   .treatment__num { display: none; }
   .treatment {
