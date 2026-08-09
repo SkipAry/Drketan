@@ -232,15 +232,23 @@
 
   /* ── Services ─────────────────────────────────────────────────────────── */
 
-  /* The group shot appears ONCE. Repeating the same photograph down a phone
-     screen reads as a mistake, so the other two tiles carry their own
-     weight as surfaces: a treatment list and a call-to-action.
-     Order: who we are, what we do, how to reach us. */
+  /* Built like the hero and like desktop: ONE panel, the staff photograph
+     behind all of it, everything else laid over the picture. The group shot
+     appears once — three separate crops of it read as a mistake. */
   .sect--services { height: auto; overflow: visible; }
-  .services-grid { grid-template-columns: 1fr; grid-template-rows: none; }
-  .tile--call, .tile--treatments { grid-row: auto; grid-column: auto; }
+  .services-grid {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--paper);
+    border-radius: var(--r);
+    overflow: hidden;
+  }
   .tile--makeover { display: none; }  /* empty once the caption was removed */
+  .tile { border-radius: 0; background: none; }
 
+  /* who we are, what we do, how to reach us */
   .tile--gallery    { order: 1; }
   .tile--treatments { order: 2; }
   .tile--call       { order: 3; }
@@ -248,50 +256,56 @@
   .tile--call > .mask,
   .tile--treatments > .mask { display: none; }
 
-  /* Photo runs in flow at its own 1559x1009 ratio, so nothing is cropped and
-     all four faces are whole. The caption sits under it, not on anybody. */
+  /* The gallery tile goes static so its photo and scrim escape to the panel
+     and back the whole of it, exactly one instance of the picture. */
   .tile--gallery {
-    background: var(--paper);
+    position: static;
+    min-height: clamp(238px, 35vh, 330px);
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 20px 12px;
   }
-  .tile--gallery > .mask {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    aspect-ratio: 1559 / 860;   /* trims empty floor, keeps every face */
-  }
-  .tile__title {
-    position: static;
-    padding: 18px 20px 0;
-    font-size: clamp(26px, 7.4vw, 32px);
-    letter-spacing: -.02em;
-  }
-  .tile__note {
-    position: static;
-    padding: 6px 20px 20px;
-    color: var(--ink-mute);
+  .tile--gallery > .mask { position: absolute; inset: 0; z-index: 0; }
+  .tile--gallery::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+      rgba(250, 250, 249, 0) 17%,
+      rgba(250, 250, 249, .82) 33%,
+      rgba(250, 250, 249, .92) 100%);
   }
 
-  /* Treatments: a solid, scannable list. */
-  .tile--treatments { background: var(--paper); padding: 6px 20px 10px; }
-  .treatments { position: static; display: block; padding: 0; }
+  .tile__title,
+  .tile__note {
+    position: relative;
+    z-index: 2;
+    top: auto; bottom: auto; left: auto;
+  }
+  .tile__title { font-size: clamp(26px, 7.4vw, 32px); letter-spacing: -.02em; }
+  .tile__note  { margin-top: 4px; color: var(--ink-soft); }
+
+  /* Treatments keep their desktop form: glass tiles over the photograph. */
+  .tile--treatments { position: relative; z-index: 2; padding: 4px 12px 6px; }
+  .treatments { position: static; flex-direction: column; padding: 0; }
   .treatment {
-    display: flex;
+    flex: 0 0 auto;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding: 17px 0;
-    border-radius: 0;
-    background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    gap: 14px;
+    padding: 15px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     color: var(--ink);
   }
-  .treatment:last-child { border-bottom: none; }
-  .treatment:hover { transform: none; background: none; }
+  .treatment--solid { background: rgba(255, 255, 255, .9); }
+  .treatment:hover { transform: none; }
   .treatment h3 { font-size: 18px; line-height: 1.25; }
   .treatment h3 br { display: none; }
   .treatment__num {
@@ -299,26 +313,25 @@
     width: 34px;
     height: 34px;
     font-size: 12px;
-    border-color: rgba(0, 0, 0, .22);
-    color: var(--ink-mute);
+    border-color: rgba(0, 0, 0, .26);
   }
 
-  /* Closing call-to-action. */
+  /* Closing call-to-action, still inside the same panel. */
   .tile--call {
-    background: var(--ink);
-    color: var(--white);
-    padding: 26px 20px;
+    position: relative;
+    z-index: 2;
+    padding: 18px 20px 22px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     min-height: 0;
   }
   .tile__copy {
     position: static;
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 600;
-    line-height: 1.35;
-    color: var(--white);
+    line-height: 1.4;
+    color: var(--ink-soft);
   }
   .tile__copy br { display: none; }
   .tile__cta {
