@@ -36,6 +36,15 @@
 
   --fs-body: 14px;
   --fs-prose: 17px;
+
+  /* One tracking ramp: the larger the type, the tighter it sets. */
+  --track-display: -.03em;
+  --track-head:    -.02em;
+  --track-sub:     -.01em;
+
+  /* Space between a heading and what follows it, and between blocks. */
+  --space-head: 14px;
+  --space-block: 26px;
 }
 
 @media (max-width: 900px) {
@@ -62,6 +71,13 @@ body {
 }
 
 h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+
+/* Headings set their own last line rather than leaving a one-word orphan. */
+h1, h2, h3, h4, .action__label, .hero-proof strong {
+  text-wrap: balance;
+  letter-spacing: var(--track-head);
+}
+p, dd, li, cite, figcaption { text-wrap: pretty; }
 ul { margin: 0; padding: 0; list-style: none; }
 img { max-width: 100%; display: block; }
 button { font: inherit; color: inherit; }

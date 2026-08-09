@@ -27,25 +27,28 @@
 .card--mist  { background: var(--mist); }
 .card--dark  { background: var(--ink); color: var(--white); }
 
-.card__note    { font-size: 14px; font-weight: 600; }
-.card__heading { font-size: 30px; font-weight: 700; line-height: 32px; }
+.card__note    { font-size: 14px; font-weight: 600; letter-spacing: 0; }
+.card__heading {
+  font-size: clamp(24px, 2.1vw, 30px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: var(--track-head);
+}
 
 .display {
-  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-size: clamp(3rem, 6.4vw, 6rem);   /* 6rem is the display ceiling */
   font-weight: 700;
   line-height: .95;
+  letter-spacing: var(--track-display);
 }
-.display--tight {
-  font-size: clamp(2.6rem, 5.4vw, 5rem);
-  letter-spacing: -.02em;
-}
+.display--tight { font-size: clamp(2.5rem, 5vw, 4.6rem); }
 
 .prose {
-  max-width: 56ch;
+  max-width: 64ch;
   font-size: var(--fs-prose);
   font-weight: 500;
-  line-height: 1.5;
-  text-wrap: pretty;
+  line-height: 1.55;
+  letter-spacing: 0;
   color: var(--ink-soft);
 }
 
@@ -95,7 +98,7 @@
   gap: 16px;
   flex-wrap: wrap;
 }
-.implants-consult .card__note { margin-bottom: 12px; }
+.implants-consult .card__note { margin-bottom: 10px; }
 
 .implants-photo {
   position: relative;
@@ -128,7 +131,7 @@
   justify-content: space-between;
   gap: 12px;
 }
-.photo-card h4 { font-size: 24px; font-weight: 700; line-height: 28px; }
+.photo-card h4 { font-size: clamp(20px, 1.7vw, 24px); font-weight: 700; line-height: 1.14; }
 .photo-card:hover .arrow { transform: translate(3px, -3px); }
 
 .photo-card--glass {
@@ -150,7 +153,7 @@
   justify-content: space-between;
   gap: 24px;
 }
-.about-bio .display { margin-bottom: 22px; }
+.about-bio .display { margin-bottom: var(--space-head); }
 
 .about-quote {
   padding: 32px;
@@ -163,9 +166,9 @@
   font-size: clamp(1.25rem, 2.1vw, 2rem);
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -.01em;
+  letter-spacing: var(--track-sub);
 }
-.about-quote cite { margin-top: 20px; font-size: 14px; font-weight: 600; font-style: normal; }
+.about-quote cite { margin-top: var(--space-block); font-size: 14px; font-weight: 600; font-style: normal; }
 
 .about-portrait {
   border-radius: var(--r);
@@ -185,8 +188,8 @@
   justify-content: space-between;
   gap: 12px;
 }
-.fact__value { font-size: 30px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
-.fact__label { font-size: 14px; font-weight: 600; line-height: 1.35; color: var(--ink-soft); }
+.fact__value { font-size: clamp(26px, 2vw, 30px); font-weight: 700; line-height: 1; letter-spacing: var(--track-head); font-variant-numeric: tabular-nums; }
+.fact__label { font-size: 14px; font-weight: 600; line-height: 1.4; letter-spacing: 0; color: var(--ink-soft); }
 .fact--dark { background: var(--ink); }
 .fact--dark .fact__value { color: var(--white); }
 .fact--dark .fact__label { color: var(--mist); }
@@ -215,11 +218,11 @@
 
 .visit-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
 .visit-details dt { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-mute); }
-.visit-details dd { margin-top: 8px; font-size: 15px; font-weight: 600; line-height: 1.45; }
+.visit-details dd { margin-top: 8px; font-size: 15px; font-weight: 600; line-height: 1.5; letter-spacing: 0; }
 .visit-details a { border-bottom: 1px solid rgba(0, 0, 0, .25); }
 
 .visit-hours { padding: 28px; }
-.visit-hours .card__heading { margin-bottom: 20px; }
+.visit-hours .card__heading { margin-bottom: var(--space-block); }
 .hours { margin-bottom: 20px; }
 .hours li {
   display: flex;
@@ -249,7 +252,7 @@
 }
 .action:hover { transform: translateY(-3px); color: inherit; }
 .action:hover .arrow { transform: translate(3px, -3px); }
-.action__label { font-size: 18px; font-weight: 700; line-height: 1.2; }
+.action__label { font-size: clamp(17px, 1.4vw, 19px); font-weight: 700; line-height: 1.2; }
 .arrow--light { border-color: rgba(255, 255, 255, .6); }
 
 .visit-map {

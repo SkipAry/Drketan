@@ -69,16 +69,17 @@
   font-size: min(clamp(3rem, 10.5vw, 10rem), 25vh);
   font-weight: 700;
   line-height: .82;
-  letter-spacing: -.035em;
+  letter-spacing: -.038em;   /* the floor is -.04em */
 }
 .hero-title span { display: block; }
 
 .hero-lede {
-  margin-top: clamp(16px, 2.4vh, 26px);
-  max-width: 40ch;
+  margin-top: clamp(18px, 2.6vh, 28px);
+  max-width: 44ch;
   font-size: clamp(15px, 1.15vw, 18px);
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.55;
+  letter-spacing: 0;
   text-wrap: pretty;
   color: var(--ink-soft);
 }
@@ -101,7 +102,7 @@
   -webkit-backdrop-filter: blur(14px);
 }
 .hero-proof strong { display: block; font-size: 15px; font-weight: 700; }
-.hero-proof span { display: block; margin-top: 3px; font-size: 12.5px; font-weight: 500; line-height: 1.35; color: var(--ink-soft); }
+.hero-proof span { display: block; margin-top: 4px; font-size: 12.5px; font-weight: 500; line-height: 1.4; letter-spacing: 0; color: var(--ink-soft); }
 
 
 /* ── 2. Team photo + treatments ─────────────────────────────────────────── */
@@ -125,9 +126,9 @@
 .tile--call { grid-row: span 2; }
 .tile--treatments { grid-column: span 2; }
 
-.tile__title { position: absolute; top: 24px; left: 28px; z-index: 10; font-size: 32px; font-weight: 700; }
-.tile__note  { position: absolute; bottom: 24px; left: 28px; z-index: 10; font-size: 14px; font-weight: 600; }
-.tile__copy  { position: absolute; bottom: 80px; left: 28px; z-index: 10; font-size: 14px; font-weight: 600; line-height: 20px; }
+.tile__title { position: absolute; top: 24px; left: 28px; z-index: 10; font-size: clamp(26px, 2.3vw, 32px); font-weight: 700; }
+.tile__note  { position: absolute; bottom: 24px; left: 28px; z-index: 10; font-size: 14px; font-weight: 600; letter-spacing: 0; }
+.tile__copy  { position: absolute; bottom: 80px; left: 28px; z-index: 10; font-size: 14px; font-weight: 600; line-height: 1.45; letter-spacing: 0; }
 .tile__cta   { position: absolute; bottom: 24px; right: 24px; z-index: 10; }
 
 .treatments {
@@ -162,7 +163,7 @@
 }
 .treatment:hover { background: rgba(255, 255, 255, .92); transform: translateY(-4px); }
 
-.treatment h3 { font-size: clamp(1.1rem, 1.9vw, 2rem); font-weight: 700; line-height: 1.05; }
+.treatment h3 { font-size: clamp(1.1rem, 1.8vw, 1.85rem); font-weight: 700; line-height: 1.08; letter-spacing: var(--track-head); }
 
 .treatment__num {
   align-self: flex-end;
@@ -302,9 +303,9 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
-    gap: 14px;
-    min-height: 134px;
-    padding: 16px;
+    gap: 12px;
+    min-height: 112px;
+    padding: 16px 18px;
     border-radius: 14px;
     background: rgba(255, 255, 255, .62);
     backdrop-filter: blur(16px);
@@ -350,4 +351,36 @@
     color: var(--white);
   }
   .tile__cta:hover { background: var(--white); color: var(--ink); transform: none; }
+}
+
+/* ── Phones only ────────────────────────────────────────────────────────────
+   Deliberately below the tablet range: everything from 701px up keeps the
+   layout above untouched.
+   ────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  /* Three claims, one line. Equal shares with a fluid label so they still
+     fit at 360px without wrapping. */
+  .hero-proof { flex-wrap: nowrap; gap: 5px; }
+  .hero-proof li {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 9px 8px;
+    text-align: center;
+  }
+  .hero-proof strong { font-size: clamp(10.5px, 3.1vw, 13px); white-space: nowrap; }
+
+  /* Treatment names carry themselves; the numbering added nothing. */
+  .treatment__num { display: none; }
+  .treatment {
+    justify-content: center;
+    gap: 0;
+    min-height: 84px;
+  }
+  /* The last tile spans both columns, so its name fits on one line. */
+  .treatment:last-child h3 br { display: none; }
+
+  /* The Call Us button says this already. */
+  .tile__copy { display: none; }
+  .tile--call { padding-top: 6px; }
 }
