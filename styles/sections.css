@@ -372,7 +372,7 @@
      desktop maximums, not a scale — at 390px the hero headline and every
      section heading both landed on 48px and the hierarchy disappeared. */
   .hero-title { font-size: clamp(3.1rem, 13.5vw, 3.6rem); }
-  .hero-lede  { font-size: 17px; line-height: 1.55; }
+  .hero-lede  { font-size: 14px; line-height: 1.55; }
   .tile__title { font-size: 22px; }
   .tile__note  { font-size: 15px; }
   .treatment h3 { font-size: 16.5px; }

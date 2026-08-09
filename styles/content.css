@@ -303,12 +303,12 @@
   .card__heading  { font-size: 22px; }
   .about-quote p  { font-size: 20px; }
 
-  .prose { font-size: 17px; }
+  .prose { font-size: 14px; }
   .action__label { font-size: 17px; }
   .hours li, .visit-details dd { font-size: 16px; }
   .fact__value { font-size: 20px; }
 
-  /* 14px is too small for anything a patient actually has to read. */
+  /* Secondary labels, a step under body copy. */
   .card__note, .fact__label { font-size: 15px; }
   .visit-details dt { font-size: 13px; }
 }
