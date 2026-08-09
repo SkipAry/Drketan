@@ -255,6 +255,41 @@ html {
 }
 .booking::backdrop { background: rgba(0, 0, 0, .45); backdrop-filter: blur(4px); }
 .booking[open] { animation: dialog-in .35s var(--ease); }
+.booking__grabber { display: none; }
+
+/* ── The sheet ───────────────────────────────────────────────────────────
+   On a phone the dialog becomes a surface the thumb owns, so it arrives
+   from the bottom edge and leaves the same way. scripts/booking-sheet.js
+   drives the transform; the translateY below is only the resting place it
+   starts from, and is gated on html.js so a dead script cannot hide it. */
+
+@media (max-width: 700px) {
+  .booking {
+    width: 100%;
+    max-width: none;
+    max-height: 86vh;
+    margin: auto auto 0;
+    padding: 12px 20px calc(26px + env(safe-area-inset-bottom));
+    border-radius: 22px 22px 0 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .js .booking { transform: translateY(100%); }
+  .booking[open] { animation: none; }
+
+  /* the scrim thins as the sheet is thrown, so dimming follows the thumb */
+  .booking::backdrop { background: rgba(0, 0, 0, calc(var(--dim, 1) * .5)); }
+
+  .booking__grabber {
+    display: block;
+    width: 40px;
+    height: 4px;
+    margin: 2px auto 16px;
+    border-radius: var(--r-pill);
+    background: rgba(0, 0, 0, .22);
+  }
+  .booking__close-form { top: 20px; }
+}
 @keyframes dialog-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
 
 .booking__close-form { position: absolute; top: 16px; right: 16px; }

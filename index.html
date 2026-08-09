@@ -325,6 +325,7 @@
 
 <!-- Booking: no backend, so the form hands off to WhatsApp or the phone -->
 <dialog class="booking" id="booking" aria-labelledby="bookingTitle">
+  <div class="booking__grabber" aria-hidden="true"></div>
   <form method="dialog" class="booking__close-form">
     <button class="booking__close" aria-label="Close">&times;</button>
   </form>
@@ -361,5 +362,6 @@
 </dialog>
 
 <script src="scripts/main.js" defer></script>
+<script src="scripts/booking-sheet.js" defer></script>
 </body>
 </html>

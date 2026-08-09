@@ -16,7 +16,8 @@ styles/base.css       tokens, reset, header, footer, buttons, dialog
 styles/sections.css   hero + services (the two full-height photo sections)
 styles/content.css    implants, about, visit
 styles/interaction.css  press feedback, pointer capability, material fallbacks
-scripts/main.js       tile masks, scroll reveals, splash, nav, booking
+scripts/main.js       tile masks, header height, nav, booking hand-off
+scripts/booking-sheet.js  drag-to-dismiss booking sheet on phones
 assets/img/*.webp     all imagery, converted from the handoff PNGs
 assets/fonts/*.woff2  Open Sauce One, self-hosted (SIL OFL 1.1, see OFL.txt)
 ```
