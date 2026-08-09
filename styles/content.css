@@ -307,6 +307,9 @@
   .action__label { font-size: 17px; }
   .hours li, .visit-details dd { font-size: 16px; }
   .fact__value { font-size: 22px; }
+  /* Gold / Hg-free / Green set a step down from the tenure stat.
+     Positional: they are cards 2-4 of the four in .facts. */
+  .fact:not(:first-child) .fact__value { font-size: 20px; }
 
   /* 14px is too small for anything a patient actually has to read. */
   .card__note, .fact__label { font-size: 15px; }
